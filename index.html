@@ -31,14 +31,16 @@
     }
 
     #title {
-      font-family: 'Aclonica', cursive; /* Replace with your lovey dovey font */
+      font-family: 'Aclonica', cursive;
       text-align: center;
       font-size: 40px;
       color: white;
-      padding-top: 30px;
-      text-shadow: 2px 2px 5px #888; /* Text shadow for emphasis */
-      animation: zoomInOut 3s infinite alternate; /* Title animation */
+      padding-top: 15px; /* Adjust as needed */
+      text-shadow: 2px 2px 5px #888;
+      animation: zoomInOut 3s infinite alternate;
+      line-height: 1.2; /* Adjust as needed */
     }
+
 
     @keyframes zoomInOut {
       from {
@@ -147,7 +149,7 @@
 <body>
 
   <div id="love-container">
-    <div id="title">LOVE CALCULATOR</div>
+    <div id="title">LOVE<br>CALCULATOR</div>
     <div id="input-boxes">
       <input class="input-box" type="text" id="your-name" placeholder="Your Name" oninput="validateInput(this)">
       <input class="input-box" type="text" id="crush-name" placeholder="Crush's Name" oninput="validateInput(this)">
