@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+      background-color: #ff99cc; /* Light pink background color */
+      transition: background-color 2s ease; /* Background color transition */
+      animation: changeColor 10s infinite alternate; /* Looping color animation */
+    }
+
+    @keyframes changeColor {
+      0% {
+        background-color: #ff99cc;
+      }
+      100% {
+        background-color: #ffc0cb; /* Change to any similar color you prefer */
+      }
+    }
+
+    #love-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #title {
+      font-family: 'lovey-dovey-font.ttf', cursive; /* Replace with your lovey dovey font */
+      text-align: center;
+      font-size: 40px;
+      color: white;
+      padding-top: 30px;
+      text-shadow: 2px 2px 5px #888; /* Text shadow for emphasis */
+      animation: zoomInOut 3s infinite alternate; /* Title animation */
+    }
+
+    @keyframes zoomInOut {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
+
+    #input-boxes {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-box {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      outline: none;
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+      text-transform: uppercase; /* Auto capitalize all letters */
+    }
+
+    #calculate-btn {
+      font-size: 24px;
+      margin-top: 20px;
+      cursor: pointer;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    #calculate-btn:hover {
+      background-color: #2078b5;
+      transform: scale(1.1);
+    }
+
+    #calculate-btn[disabled] {
+      cursor: not-allowed;
+      background-color: #ccc;
+    }
+
+    #loading {
+      display: none;
+      font-size: 20px;
+      margin-top: 20px;
+      color: white;
+      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+    }
+
+    #result {
+      font-size: 24px;
+      margin-top: 20px;
+      color: white;
+      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+    }
+
+    #love-animations {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('heart-shape.png') center/cover no-repeat;
+      z-index: -1;
+    }
+
+    .colorful-text {
+      color: #ff66b2; /* Pinkish color for colorful text */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="love-container">
+    <div id="title">LOVE CALCULATOR</div>
+    <div id="input-boxes">
+      <input class="input-box" type="text" id="your-name" placeholder="Your Name" oninput="validateInput(this)">
+      <input class="input-box" type="text" id="crush-name" placeholder="Crush's Name" oninput="validateInput(this)">
+      <button id="calculate-btn" onclick="calculateLove()" disabled>Calculate Love</button>
+      <div id="loading">Calculating...</div>
+      <div id="result"></div>
+    </div>
+    <div id="love-animations"></div>
+  </div>
+
+  <script>
+    function validateInput(input) {
+      const inputValue = input.value.replace(/[^a-zA-Z ]/g, ''); // Allow only letters and spaces
+      input.value = inputValue.slice(0, 18); // Limit length to 18 characters
+
+      const calculateBtn = document.getElementById('calculate-btn');
+      const yourName = document.getElementById('your-name').value;
+      const crushName = document.getElementById('crush-name').value;
+
+      calculateBtn.disabled = !(yourName.length >= 3 && crushName.length >= 3);
+    }
+
+    function calculateLove() {
+      const yourName = document.getElementById('your-name').value;
+      const crushName = document.getElementById('crush-name').value;
+      const loadingElement = document.getElementById('loading');
+      const resultElement = document.getElementById('result');
+      const calculateBtn = document.getElementById('calculate-btn');
+
+      if (yourName && crushName && !calculateBtn.disabled) {
+        loadingElement.style.display = 'block';
+        resultElement.innerHTML = '';
+        calculateBtn.disabled = true;
+
+        // Simulate a delay for loading (you can replace this with your actual calculation logic)
+        setTimeout(() => {
+          const lovePercentage = Math.floor(Math.random() * 101); // Random percentage between 0 and 100
+          const loveSentences = getLoveSentences(lovePercentage);
+
+          resultElement.innerHTML = `Your Love Percentage is <span class="colorful-text">${lovePercentage}%</span>!<br><br>${loveSentences}`;
+          loadingElement.style.display = 'none';
+          calculateBtn.disabled = false;
+        }, 2000);
+      }
+    }
+
+    function getLoveSentences(percentage) {
+      if (percentage < 20) {
+        return getRandomSentence([
+          "It may be challenging for both of you to find love at this time.",
+          "You and your partner may not be experiencing much luck in love right now.",
+          "It's possible that love is not currently a priority for either of you.",
+          "You both might be going through a rough patch in your relationships.",
+          "It's possible that you and your partner are not meeting the right people right now."
+        ]);
+      } else if (percentage < 40) {
+        return getRandomSentence([
+          "Both of you are starting to see some progress in your love lives.",
+          "Love is becoming more of a possibility for both of you.",
+          "You and your partner might be attracting more potential partners lately.",
+          "Your efforts in finding love are starting to pay off for both of you.",
+          "Both of you could be on the verge of a new romantic connection."
+        ]);
+      } else if (percentage < 60) {
+        return getRandomSentence([
+          "Love is starting to feel more attainable for both of you.",
+          "You and your partner are in a good place to find love right now.",
+          "Your chances of finding love are increasing for both of you.",
+          "Both of you might be experiencing more positive feelings about love lately.",
+          "Your luck in love is improving steadily for both of you."
+        ]);
+      } else if (percentage < 80) {
+        return getRandomSentence([
+          "Love is within reach for both of you right now.",
+          "You and your partner are in a great position to find the love you desire.",
+          "Your chances of finding love are very high at this time for both of you.",
+          "Both of you could be on the brink of a wonderful new relationship.",
+          "Your luck in love is at an all-time high for both of you."
+        ]);
+      } else if (percentage < 99) {
+        return getRandomSentence([
+          "Love is very close for both of you right now.",
+          "You and your partner are in an excellent position to find the love you desire.",
+          "Your chances of finding love are extremely high at this time for both of you.",
+          "Both of you could be on the verge of a truly remarkable new relationship.",
+          "Your luck in love is almost at its peak for both of you."
+        ]);
+      } else {
+        return getRandomSentence([
+          "Love is practically guaranteed for both of you at this point.",
+          "You and your partner are almost certain to find the love you've been seeking.",
+          "Your chances of finding love are as close to 100% as it gets for both of you.",
+          "Both of you could be on the verge of an incredible new relationship that will change your lives forever.",
+          "Your luck in love is absolutely outstanding right now for both of you!"
+        ]);
+      }
+    }
+
+    function getRandomSentence(sentences) {
+      return sentences[Math.floor(Math.random() * sentences.length)];
+    }
+  </script>
+
+</body>
+</html>
