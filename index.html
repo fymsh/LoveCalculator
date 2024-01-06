@@ -8,10 +8,10 @@
     body {
       margin: 0;
       overflow: hidden;
-      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
-      background-color: #ff99cc; /* Light pink background color */
-      transition: background-color 2s ease; /* Background color transition */
-      animation: changeColor 10s infinite alternate; /* Looping color animation */
+      font-family: 'Dancing Script', cursive; /* Change to your cute font */
+      background-color: #ff99cc;
+      transition: background-color 2s ease;
+      animation: changeColor 10s infinite alternate;
     }
 
     @keyframes changeColor {
@@ -19,7 +19,7 @@
         background-color: #ff99cc;
       }
       100% {
-        background-color: #ffc0cb; /* Change to any similar color you prefer */
+        background-color: #ffc0cb;
       }
     }
 
@@ -30,13 +30,13 @@
     }
 
     #title {
-      font-family: 'lovey-dovey-font.ttf', cursive; /* Replace with your lovey dovey font */
+      font-family: 'Dancing Script', cursive; /* Change to your cute font */
       text-align: center;
       font-size: 40px;
       color: white;
       padding-top: 30px;
-      text-shadow: 2px 2px 5px #888; /* Text shadow for emphasis */
-      animation: zoomInOut 3s infinite alternate; /* Title animation */
+      text-shadow: 2px 2px 5px #888;
+      animation: zoomInOut 3s infinite alternate;
     }
 
     @keyframes zoomInOut {
@@ -67,8 +67,8 @@
       border-radius: 5px;
       outline: none;
       text-align: center;
-      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
-      text-transform: uppercase; /* Auto capitalize all letters */
+      font-family: 'Dancing Script', cursive; /* Change to your cute font */
+      text-transform: uppercase;
     }
 
     #calculate-btn {
@@ -80,7 +80,7 @@
       color: white;
       border: none;
       border-radius: 5px;
-      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+      font-family: 'Dancing Script', cursive; /* Change to your cute font */
       transition: background-color 0.3s, transform 0.3s;
     }
 
@@ -94,19 +94,11 @@
       background-color: #ccc;
     }
 
-    #loading {
-      display: none;
-      font-size: 20px;
-      margin-top: 20px;
-      color: white;
-      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
-    }
-
-    #result {
+    #loading, #result {
       font-size: 24px;
       margin-top: 20px;
       color: white;
-      font-family: 'Comic Sans MS', cursive; /* Replace with your interesting font */
+      font-family: 'Dancing Script', cursive; /* Change to your cute font */
     }
 
     #love-animations {
@@ -118,9 +110,8 @@
     }
 
     .colorful-text {
-      color: #ff66b2; /* Pinkish color for colorful text */
+      color: #ff66b2;
     }
-
   </style>
 </head>
 <body>
@@ -139,8 +130,8 @@
 
   <script>
     function validateInput(input) {
-      const inputValue = input.value.replace(/[^a-zA-Z ]/g, ''); // Allow only letters and spaces
-      input.value = inputValue.slice(0, 18); // Limit length to 18 characters
+      const inputValue = input.value.replace(/[^a-zA-Z ]/g, '');
+      input.value = inputValue.slice(0, 18);
 
       const calculateBtn = document.getElementById('calculate-btn');
       const yourName = document.getElementById('your-name').value;
@@ -161,9 +152,8 @@
         resultElement.innerHTML = '';
         calculateBtn.disabled = true;
 
-        // Simulate a delay for loading (you can replace this with your actual calculation logic)
         setTimeout(() => {
-          const lovePercentage = Math.floor(Math.random() * 101); // Random percentage between 0 and 100
+          const lovePercentage = Math.floor(Math.random() * 101);
           const loveSentences = getLoveSentences(lovePercentage);
 
           resultElement.innerHTML = `Your Love Percentage is <span class="colorful-text">${lovePercentage}%</span>!<br><br>${loveSentences}`;
